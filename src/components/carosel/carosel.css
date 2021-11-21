@@ -1,0 +1,63 @@
+.main-slider{
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+
+    bottom: 201px;
+}
+
+.custom-carusel{
+    width: 100%;
+    height: 29rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-caruse img{
+    height: auto;
+    width: 100%;
+    display: block;
+}
+
+.btns{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns .btn1{
+    display: flex;
+    justify-content: flex-start;
+    height: auto;
+    width: inherit;
+    position: relative;
+    bottom: 267px;
+
+}
+
+.btns .btn2{
+    display: flex;
+    justify-content: flex-end;
+    height: auto;
+    width: inherit;
+    position: relative;
+    bottom: 267px;
+}
+
+.btns .btn1 button{
+    border: none;
+    color: white;
+    background-color: darkgray;
+}
+
+.btns .btn2 button{
+    border: none;
+    color: white;
+    background-color: darkgray;
+}

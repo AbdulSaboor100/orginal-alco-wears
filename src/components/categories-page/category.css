@@ -1,0 +1,27 @@
+.main-category{
+    width: 100%;
+    height: auto   ;
+    position: relative;
+    overflow: hidden;
+    bottom: 210px;
+}
+
+.main-naving{
+    width: 100%;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.main-details{
+    width: 100%;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+
+}

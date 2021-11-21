@@ -1,0 +1,52 @@
+ .main-header{
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(54, 54, 54);
+
+    color: white;
+}
+
+
+
+.logo-div img{
+    max-width: 100%;
+    height: auto;
+}
+
+
+.navbar-div ul{ 
+    display: flex; 
+     list-style: none; 
+     font-size: 22px;
+     font-weight: 300;
+     justify-content: space-evenly;
+     align-items: center;
+     position: relative;
+     top:30px;
+ }  
+
+.navbar-div ul li{
+    /* padding: 15px; */
+    padding: 8px 20px;
+}
+
+.navbar-div ul li a{
+    text-decoration: none;
+    /* color: rgb(146, 143, 143);  */
+    color: white;
+}
+
+.navbar-div ul li a:hover{
+    color: rgb(32, 31, 31);
+}
+
+.navbar-div ul li:hover{
+    background-color: white;
+    padding: 8px 20px;
+    color: black;
+    transition: 1s;
+    border-radius: 10px;
+    cursor: pointer;
+}

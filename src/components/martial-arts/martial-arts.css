@@ -1,0 +1,93 @@
+.main-products{
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+
+    bottom: 141px;
+}
+
+.products-categories{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.products-categories .div1{
+    width: 100%;
+    height: auto;
+    display: flex;
+    /* flex-direction: column; */
+    margin-left: 8rem;
+/* font-size: 15px; */
+}
+
+.div1 h3{
+    font-size: 20px;    
+}
+
+.div2{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    margin-left: 4rem;
+    margin-top: 1rem;
+}
+
+.div2 ul{
+    list-style: none;
+    display: flex;
+    /* flex-direction: column; */
+
+}
+
+.div2 ul li{
+    border: 2px solid rgb(124, 123, 123);
+    width: 70%;
+
+}
+
+.div2 ul li a{
+    text-decoration: none;
+    color: black;
+
+}
+
+.ProductsArts{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row ;
+    justify-content: flex-start;
+    align-items: center; 
+}
+
+.products-here{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column ;
+    justify-content: flex-start;
+    align-items: center;
+    padding:0px 20px;
+    margin: 10px;
+}
+
+.products-here img{
+    width: 100%;
+    height: auto;
+
+}
+
+.products-here:hover{
+    cursor: pointer;
+}
+
+.products-here h4{
+    text-align: left;
+    font-size: 15px;
+}

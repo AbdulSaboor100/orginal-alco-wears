@@ -1,0 +1,36 @@
+.main-slider-cards{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.cards{
+    width: 100%;
+    height:auto;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* .cards :hover{
+    width: 100%;
+    justify-content: center;
+    cursor: pointer;
+    display: flex;
+    height:auto;
+    border: 2px solid rgb(126, 122, 122);
+} */
+
+.cards img{
+    max-width: 100%;
+    height: auto;
+
+}
+.cards a{
+    text-decoration: none;
+    color: black;
+}
+
+.cards a:hover{
+    color: black;
+}

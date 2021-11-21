@@ -4,11 +4,13 @@
     position: relative;
     overflow: hidden;
     background-color: rgb(54, 54, 54);
-
     color: white;
 }
 
 
+.logo-div{
+    height: 10rem;
+}
 
 .logo-div img{
     max-width: 100%;

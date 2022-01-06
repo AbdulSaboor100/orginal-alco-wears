@@ -22,6 +22,8 @@
     display: block;
 }
 
+
+
 .btns{
     width: 100%;
     height: auto;
@@ -61,3 +63,9 @@
     color: white;
     background-color: darkgray;
 }
+
+/* @media only screen and (max-width : 855px){
+    .main-slider{
+        bottom: 240px;
+    }
+} */

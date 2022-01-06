@@ -52,7 +52,7 @@ function Carosel(){
             <Row>
                 <Col sm={12} md={12}>
                     <div className="custom-carusel">
-                        <img  src={imgArr[i]} />
+                        <img style={{maxWidth:'100%',width:'100%' , height:'100%' , display:'block'}}  src={imgArr[i]} />
                         <div className="btns">
                             {/* <div className="btn1">
                                 <button onClick={backBtn}>back</button>

@@ -80,7 +80,7 @@ export let data = {
         'Hand Wraps',
         'Sports Bag',
         'Skiping Ropes',
-        'Wallets',
+        'Wallets ',
     ],
 
     productData : [],

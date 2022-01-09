@@ -31,20 +31,13 @@
 }
 .list-items ul li{
     text-align: left;
-    
+    padding: 10px 25px;
+    color: white;
 }
 .hide-nav{
     display: none;
-    top: 12.3rem;
-    padding: 0px;
-}
-
-
-
-.list-items ul li{
-    padding: 10px 25px;
-    color: white;
-    /* position: relative; */
+    top: 5.45rem;
+    position: relative;
 }
 
 .list-items ul li:hover{
@@ -61,7 +54,6 @@
     justify-content: center;
     width:20% ;
     height: auto;
-    padding-left: 40px; 
     z-index: 10;    
     background-color: white ;
 
@@ -75,11 +67,11 @@
 }
 
 .list-items ul li:hover .hide-nav ul li{
-    position: relative;
-    right: 60px;
     display: flex;
     padding: 5px 2px ; 
     width: 100%;
+    position: relative;
+    right: 25px;
     overflow: hidden;
     font-size: 15px;
 }
@@ -91,21 +83,12 @@
 
 .list-items ul li:hover .hide-nav ul li:hover{
     background-color:white ;
-
-    
 }
 
 .list-items ul li:hover .hide-nav ul li a:hover{
-    /* margin: 0 5px; */
     transition: 1s;
     color: red;
 }
-
-/* @media only screen and (max-width : 855px){
-    .main-sub-parent{
-        display: none;
-    }
-} */
 
 .long-div{
     width: 100%;
@@ -126,7 +109,11 @@
     height: auto;
 }
 
-
+.content-div{
+    display: flex;
+    width: 100% ;
+    justify-content: flex-start;
+}
 
 
 

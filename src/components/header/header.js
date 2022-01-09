@@ -8,12 +8,12 @@ function Header(){
     return(
         <div className="main-header">
             <Row>
-                <Col sm={12} md={4}>
-                    <div className="logo-div">
-                        <img src={Logo}  />
+                <Col xs={12} sm={4} md={4}>
+                    <div className="name-div">
+                        <p>Alco Wears</p>
                     </div>
                 </Col>
-                <Col sm={12} md={8}>
+                <Col xs={12} sm={8} md={8}>
                     <div className="navbar-div">
                          <ul>
                              <li><Link to="/">Home</Link>  </li>

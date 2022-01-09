@@ -26,7 +26,7 @@ export default class MultipleItems extends Component {
       slidesToScroll: 3
     };
     return (
-      <div className="main-slider-cards" style={{paddingLeft:50 , position:'relative' , bottom : 100 }}>
+      <div className="main-slider-cards" style={{position:'relative' , bottom : 100 }}>
         <Slider {...settings}>
           
           <div className="cards" id="cards">

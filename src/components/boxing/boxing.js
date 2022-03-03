@@ -5,17 +5,19 @@ import './boxing.css';
 import DropDown from "../dropdown/dropdown";
 import { Col, Row } from "reactstrap";
 import { GlobalContext } from "../../context/context";
-import { Link , useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Footer from "../footer/footer";
-import { db ,collection, getDocs } from "../../configs/firebase";
+import { db, collection, getDocs } from "../../configs/firebase";
+import LoadingScreen from "../loading-screen/loading-screen";
 
 
-function Boxing(){
-    let {state , dispatch} = useContext(GlobalContext);
-    let [productId , setProductId] = useState([]);
-    let [productHead , setProductHead] = useState('');
-    const {id} = useParams();
-    
+function Boxing() {
+    let { state, dispatch } = useContext(GlobalContext);
+    let [productId, setProductId] = useState([]);
+    let [productHead, setProductHead] = useState('');
+    let [loader, setLoader] = useState(false);
+    const { id } = useParams();
+
     const boxingArr = [
         'bag-gloves',
         'boxing-shorts',
@@ -31,27 +33,29 @@ function Boxing(){
         'synthetic-leather-boxing-gloves',
     ]
 
-    useEffect(async function(){
+    useEffect(async function () {
+        setLoader(true)
         let dataRef = collection(db, id)
         let data = await getDocs(dataRef);
         let userClone = []
-        data.forEach(function(item){
+        data.forEach(function (item) {
             userClone.push(item)
-            setProductHead(item.data().ProductName)
+            setProductHead(id)
+            setLoader(false)
         })
         setProductId(userClone)
-        
-    },[id])
+
+    }, [id])
 
 
 
-    return(
+    return (
         <div className="main-martial-arts5">
             <Header />
             <DropDown />
             <Carosel />
-            
-           <div className="main-products5">
+
+            <div className="main-products5">
                 <Row>
                     <Col sm={12} md={4}>
                         <div className="products-categories5">
@@ -60,10 +64,10 @@ function Boxing(){
                             </div>
                             <div className="div2-5">
                                 {
-                                    state.boxing.map(function(item,index){
-                                        return(
+                                    state.boxing.map(function (item, index) {
+                                        return (
                                             <>
-                                                <ul key={item+index}>
+                                                <ul key={item + index}>
                                                     <li><Link to={`/boxing/${boxingArr[index]}`}>{item}</Link></li>
                                                 </ul>
                                             </>
@@ -72,34 +76,38 @@ function Boxing(){
                                 }
                             </div>
                         </div>
-                    </Col> 
+                    </Col>
                     <Col sm={12} md={8}>
                         <div className="product-name5">
                             <h2>{productHead}</h2>
                         </div>
-                        <div className="ProductsArts5">
-                        <Row>
-                            {
-                                productId.map(function(doc,index){
-                                    return(
-                                        <>
-                                            <Col sm={12} md={4}>
-                                            <div key={doc+index} className="products-here5">
-                                                <img src={doc.data().URL} />
-                                                <h4>{doc.data().ProductName}</h4>
-                                                <h4>{doc.data().ProductID}</h4>
-                                            </div>
-                                            </Col>
-                                        </>
+                        <div className={`${"ProductsArts5"} ${loader === true ? "setloaderclass" : ""}`}>
+                            <Row>
+                                {
+                                    loader != true ? (
+                                        productId.map(function (doc, index) {
+                                            return (
+                                                <>
+                                                    <Col sm={12} md={4}>
+                                                        <div key={doc + index} className="products-here">
+                                                            <img src={doc.data().URL} />
+                                                            <h4>Product name : {doc.data().ProductName}</h4>
+                                                            <h4 style={{ textAlign: 'left' }}>Product Id : {doc.data().ProductID}</h4>
+                                                        </div>
+                                                    </Col>
+                                                </>
+                                            )
+                                        })
+                                    ) : (
+                                        <LoadingScreen />
                                     )
-                                })
-                            }
+                                }
                             </Row>
                         </div>
-                    </Col> 
+                    </Col>
                 </Row>
-           </div>
-           <Footer />
+            </div>
+            <Footer />
         </div>
     )
 }

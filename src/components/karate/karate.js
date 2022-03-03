@@ -5,17 +5,19 @@ import './karate.css';
 import DropDown from "../dropdown/dropdown";
 import { Col, Row } from "reactstrap";
 import { GlobalContext } from "../../context/context";
-import { Link , useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Footer from "../footer/footer";
-import { db ,collection, getDocs } from "../../configs/firebase";
+import { db, collection, getDocs } from "../../configs/firebase";
+import LoadingScreen from "../loading-screen/loading-screen";
 
 
-function Karate(){
-    let {state , dispatch} = useContext(GlobalContext);
-    let [productId , setProductId] = useState([]);
-    let [productHead , setProductHead] = useState('');
-    const {id} = useParams();
-    
+function Karate() {
+    let { state, dispatch } = useContext(GlobalContext);
+    let [productId, setProductId] = useState([]);
+    let [productHead, setProductHead] = useState('');
+    let [loader, setLoader] = useState(false);
+    const { id } = useParams();
+
     const karateArr = [
         'karate-bags-and-backpack',
         'karate-belts',
@@ -28,27 +30,29 @@ function Karate(){
         'karate-suits-and-uniforms',
     ]
 
-    useEffect(async function(){
+    useEffect(async function () {
+        setLoader(true)
         let dataRef = collection(db, id)
         let data = await getDocs(dataRef);
         let userClone = []
-        data.forEach(function(item){
+        data.forEach(function (item) {
             userClone.push(item)
-            setProductHead(item.data().ProductName)
+            setProductHead(id)
+            setLoader(false)
         })
         setProductId(userClone)
-        
-    },[id])
+
+    }, [id])
 
 
 
-    return(
+    return (
         <div className="main-martial-arts2">
             <Header />
             <DropDown />
             <Carosel />
-            
-           <div className="main-products2">
+
+            <div className="main-products2">
                 <Row>
                     <Col sm={12} md={4}>
                         <div className="products-categories2">
@@ -57,10 +61,10 @@ function Karate(){
                             </div>
                             <div className="div2-2">
                                 {
-                                    state.karate.map(function(item,index){
-                                        return(
+                                    state.karate.map(function (item, index) {
+                                        return (
                                             <>
-                                                <ul key={item+index}>
+                                                <ul key={item + index}>
                                                     <li><Link to={`/karate/${karateArr[index]}`}>{item}</Link></li>
                                                 </ul>
                                             </>
@@ -69,34 +73,38 @@ function Karate(){
                                 }
                             </div>
                         </div>
-                    </Col> 
+                    </Col>
                     <Col sm={12} md={8}>
                         <div className="product-name2">
                             <h2>{productHead}</h2>
                         </div>
-                        <div className="ProductsArts2">
-                        <Row>
-                            {
-                                productId.map(function(doc,index){
-                                    return(
-                                        <>
-                                            <Col sm={12} md={4}>
-                                            <div key={doc+index} className="products-here2">
-                                                <img src={doc.data().URL} />
-                                                <h4>{doc.data().ProductName}</h4>
-                                                <h4>{doc.data().ProductID}</h4>
-                                            </div>
-                                            </Col>
-                                        </>
+                        <div className={`${"ProductsArts2"} ${loader === true ? "setloaderclass" : ""}`}>
+                            <Row>
+                                {
+                                    loader != true ? (
+                                        productId.map(function (doc, index) {
+                                            return (
+                                                <>
+                                                    <Col sm={12} md={4}>
+                                                        <div key={doc + index} className="products-here">
+                                                            <img src={doc.data().URL} />
+                                                            <h4>Product name : {doc.data().ProductName}</h4>
+                                                            <h4 style={{ textAlign: 'left' }}>Product Id : {doc.data().ProductID}</h4>
+                                                        </div>
+                                                    </Col>
+                                                </>
+                                            )
+                                        })
+                                    ) : (
+                                        <LoadingScreen />
                                     )
-                                })
-                            }
+                                }
                             </Row>
                         </div>
-                    </Col> 
+                    </Col>
                 </Row>
-           </div>
-           <Footer />
+            </div>
+            <Footer />
         </div>
     )
 }

@@ -65,6 +65,16 @@
     align-items: center; 
 }
 
+.setloaderclass{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center; 
+}
+
+
 .products-here7{
     width: 100%;
     height: auto;

@@ -1,16 +1,15 @@
 .main-loading-screen{
-    position: relative;
     width: 100%;
-    height: auto;
-    overflow: hidden;
-    padding-top: 17rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .loads{
     width: 100%;
-    height: auto;
-    display: flex ;
-    /* flex-direction: row; */
+    height: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
 }

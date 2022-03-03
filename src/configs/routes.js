@@ -72,9 +72,9 @@ function Routes(){
                 <Route path='/accessories/:id' >
                     <Accessories />
                 </Route>
-                <Route path='/loading' >
+                {/* <Route path='/loading' >
                     <LoadingScreen />
-                </Route>
+                </Route> */}
                 <Route path='/my-admin' >
                     <MyAdmin />
                 </Route>

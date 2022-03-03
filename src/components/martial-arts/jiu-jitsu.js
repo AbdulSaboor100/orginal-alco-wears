@@ -26,23 +26,19 @@ function JiuJitsu(){
     ]
 
     useEffect(async function(){
+        setLoader(true)
         let dataRef = collection(db, id)
         let data = await getDocs(dataRef);
         let userClone = []
         data.forEach(function(item){
             userClone.push(item)
-            setProductHead(item.data().ProductName)
+            setProductHead(id)
+            setLoader(false)
         })
         setProductId(userClone)
         
     },[id])
 
-    useEffect(function(){
-        setLoader(true)
-        setTimeout(function(){
-            setLoader(false)
-        },3000)
-    },[])
 
     return(
         <>
@@ -79,22 +75,26 @@ function JiuJitsu(){
                         <div className="product-name">
                             <h2>{productHead}</h2>
                         </div>
-                        <div className="ProductsArts">
+                        <div className={`${"ProductsArts"} ${loader === true ? "setloaderclass" : ""}`}>
                         <Row>
                             {
-                                productId.map(function(doc,index){
-                                    return(
-                                        <>
-                                            <Col sm={12} md={4}>
-                                            <div key={doc+index} className="products-here">
-                                                <img src={doc.data().URL} />
-                                                <h4>{doc.data().ProductName}</h4>
-                                                <h4 style={{textAlign:'left'}}>Product Id : {doc.data().ProductID}</h4>
-                                            </div>
-                                            </Col>
-                                        </>
-                                    )
-                                })
+                                loader != true ? (
+                                    productId.map(function(doc,index){
+                                        return(
+                                            <>
+                                                <Col sm={12} md={4}>
+                                                <div key={doc+index} className="products-here">
+                                                    <img src={doc.data().URL} />
+                                                    <h4>Product name : {doc.data().ProductName}</h4>
+                                                    <h4 style={{textAlign:'left'}}>Product Id : {doc.data().ProductID}</h4>
+                                                </div>
+                                                </Col>
+                                            </>
+                                        )
+                                    })
+                                ) : (
+                                    <LoadingScreen />
+                                )
                             }
                             </Row>
                         </div>

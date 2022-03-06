@@ -5,7 +5,7 @@ import './sports-gloves.css';
 import DropDown from "../dropdown/dropdown";
 import { Col, Row } from "reactstrap";
 import { GlobalContext } from "../../context/context";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import Footer from "../footer/footer";
 import { db, collection, getDocs } from "../../configs/firebase";
 import LoadingScreen from "../loading-screen/loading-screen";
@@ -16,6 +16,7 @@ function SportsGloves() {
     let [productId, setProductId] = useState([]);
     let [productHead, setProductHead] = useState('');
     let [loader, setLoader] = useState(false);
+    let history = useHistory();
     const { id } = useParams();
 
     const sportsGlovesArr = [
@@ -84,8 +85,8 @@ function SportsGloves() {
                                         productId.map(function (doc, index) {
                                             return (
                                                 <>
-                                                    <Col sm={12} md={4}>
-                                                        <div key={doc + index} className="products-here">
+                                                    <Col sm={12} md={4}> 
+                                                        <div key={doc + index} className="products-here" onClick={()=>history.push(`/${productHead}/${doc.data().ProductID}`)}>
                                                             <img src={doc.data().URL} />
                                                             <h4>Product name : {doc.data().ProductName}</h4>
                                                             <h4 style={{ textAlign: 'left' }}>Product Id : {doc.data().ProductID}</h4>

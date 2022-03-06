@@ -1,49 +1,86 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Row } from 'reactstrap';
 import './ProductsDetails.css';
-import ReactImageZoom from 'react-image-zoom';
 import { GlobalContext } from '../../context/context';
-import { useParams } from 'react-router-dom';
-import { db, collection, getDocs, query, where } from "../../configs/firebase";
+import { useHistory, useParams } from 'react-router-dom';
+import { db, collection, getDocs, query, where } from '../../configs/firebase';
+import img1 from '../../images/sports-wear.jpg';
+import ReactImageMagnify from 'react-image-magnify';
+import Header from '../header/header';
+import Carosel from '../carosel/carosel';
+import DropDown from '../dropdown/dropdown';
+import Footer from '../footer/footer';
 
 const ProductsDetails = () => {
-    let { state, dispatch } = useContext(GlobalContext)
-    let [props, setProps] = useState({});
-    let { product, details } = useParams();
-    let [productsDetails , setProductsDetails] = useState([]);
+  let { state, dispatch } = useContext(GlobalContext);
+  let [props, setProps] = useState({});
+  let { product, details } = useParams();
+  let [productsDetails, setProductsDetails] = useState([]);
 
-    useEffect(async () => {
-        let productClone = [];
-        if (details != undefined, product != undefined) {
-            let dataRef = query(collection(db, product), where("ProductID", "==", details))
-            let res = await getDocs(dataRef);
-            res.forEach((item) => {
-                productClone.push(item.data());
-            })
-            setProductsDetails(productClone);
-        }
-    }, [details])
-    // const props = { width: 400, height: 250, zoomWidth: 500, img: { imgState } };
+  useEffect(async () => {
+    let productClone = [];
+    if ((details != undefined, product != undefined)) {
+      let dataRef = query(
+        collection(db, product),
+        where('ProductID', '==', details)
+      );
+      let res = await getDocs(dataRef);
+      res.forEach(item => {
+        productClone.push(item.data());
+      });
+      setProductsDetails(productClone);
+    }
+  }, [details]);
 
-    return (
-        <div className='products_details'>
-            <Row>
-                <Col md={6} sm={12}>
-                    <div className='image_hover'>
-                        {/* <ReactImageZoom {...props} /> */}
-                        {
-                            productsDetails.map((item)=>{
-                                return <img src={item.URL} />
-                            })
-                        }
-                    </div>
-                </Col>
-                <Col md={6} sm={12}>
-                    <div className='description'></div>
-                </Col>
-            </Row>
-        </div>
-    )
-}
+  function sendMessageOnWhatsapp() {}
 
-export default ProductsDetails
+  return (
+    <>
+      <Header />
+      <DropDown />
+      <Carosel />
+      <div className='products_details'>
+        <Row>
+          <Col md={6} sm={12}>
+            <div className='image_hover'>
+              {productsDetails.map(item => (
+                <ReactImageMagnify
+                  {...{
+                    smallImage: {
+                      alt: 'Wristwatch by Ted Baker London',
+                      isFluidWidth: true,
+                      src: item.URL,
+                    },
+                    largeImage: {
+                      src: item.URL,
+                      width: 1200,
+                      height: 1800,
+                    },
+                  }}
+                />
+              ))}
+            </div>
+          </Col>
+          <Col md={6} sm={12}>
+            <div className='description'>
+              {productsDetails.map(item => (
+                <div>
+                  <h2>Name : {item.ProductName}</h2>
+                  <h4>Description : </h4>
+                  <p>Type : {item.Type}</p>
+                  <p>{item.Description}</p>
+                  <button onClick={sendMessageOnWhatsapp}>
+                    Contact Here On Whatsapp
+                  </button>
+                </div>
+              ))}
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <Footer />
+    </>
+  );
+};
+
+export default ProductsDetails;

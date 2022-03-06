@@ -12,6 +12,7 @@ import Judo from "../components/judo/judo";
 import Karate from "../components/karate/karate";
 import LoadingScreen from "../components/loading-screen/loading-screen";
 import JiuJitsu from "../components/martial-arts/jiu-jitsu";
+import ProductsDetails from "../components/ProductsDetails/ProductsDetails";
 import SportsGloves from "../components/sports-gloves/sports-gloves";
 import Taekwondo from "../components/taekwondo/taekwondo";
 import { GlobalContext } from "../context/context";
@@ -71,6 +72,9 @@ function Routes(){
                 </Route>
                 <Route path='/accessories/:id' >
                     <Accessories />
+                </Route>
+                <Route path='/:product/:details' >
+                    <ProductsDetails />
                 </Route>
                 {/* <Route path='/loading' >
                     <LoadingScreen />

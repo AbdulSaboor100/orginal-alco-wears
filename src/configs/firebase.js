@@ -2,7 +2,7 @@ import React from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth   , createUserWithEmailAndPassword , signInWithEmailAndPassword , onAuthStateChanged , signOut } from "firebase/auth";
-import {getFirestore, collection, addDoc ,doc ,setDoc , getDoc , getDocs ,deleteDoc} from "firebase/firestore";
+import {getFirestore, collection, addDoc ,doc ,setDoc , getDoc , getDocs ,deleteDoc, query, where} from "firebase/firestore";
 import { getStorage, ref, uploadBytes ,getDownloadURL } from "firebase/storage";
 
 
@@ -42,5 +42,7 @@ export {
   ref,
   uploadBytes,
   getDownloadURL,
-  deleteDoc
+  deleteDoc,
+  query,
+  where
 }

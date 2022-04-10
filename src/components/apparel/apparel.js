@@ -71,7 +71,7 @@ function Apparel(){
                                         return(
                                             <>
                                                 <ul key={item+index}>
-                                                    <li><Link to={`/karate/${apparelArr[index]}`}>{item}</Link></li>
+                                                    <li><Link to={`/apparel/${apparelArr[index]}`}>{item}</Link></li>
                                                 </ul>
                                             </>
                                         )
